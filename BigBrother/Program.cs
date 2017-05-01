@@ -20,7 +20,7 @@ namespace BigBrother
             {
                 Process = process;
                 ManagementObject ManagementObject = new ManagementObjectSearcher(query + process.Id).Get().OfType<ManagementObject>().Single();
-                CommandLine = ManagementObject["CommandLine"].ToString();
+                CommandLine = (ManagementObject["CommandLine"] ?? ManagementObject["ExecutablePath"])?.ToString();
             }
 
             public override string ToString()
