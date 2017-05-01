@@ -16,18 +16,21 @@ namespace BigBrother
 
         static void Main(string[] args)
         {
+            IEnumerable<Process> collected = GetNewProcesses(TimeSpan.FromMinutes(1));
+            Console.WriteLine(string.Join(Environment.NewLine, collected.Select(p => string.Join(" ", p.ProcessName, p.StartInfo.FileName))));
+        }
+
+        static IEnumerable<Process> GetNewProcesses(TimeSpan interval)
+        {
+            DateTime startTime = DateTime.Now;
             IEnumerable<Process> initial = Process.GetProcesses();
             List<Process> collected = new List<Process>();
-
-            DateTime startTime = DateTime.Now;
-            TimeSpan interval = TimeSpan.FromMinutes(1);
 
             while (DateTime.Now - startTime < interval)
             {
                 collected.AddRange(Process.GetProcesses().Except(initial, ProcessComparer.Instance));
             }
-
-            Console.WriteLine(string.Join(Environment.NewLine, collected.Select(p => string.Join(" ", p.ProcessName, p.StartInfo.FileName))));
+            return collected;
         }
     }
 }
