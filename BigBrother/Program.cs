@@ -38,8 +38,8 @@ namespace BigBrother
 
         static void Main(string[] args)
         {
-            IEnumerable<ProcessInfo> collected = GetNewProcesses(TimeSpan.FromMinutes(0.2));
-            Console.WriteLine(string.Join(Environment.NewLine, collected.ToString()));
+            IEnumerable<ProcessInfo> collected = GetNewProcesses(TimeSpan.FromMinutes(1));
+            Console.WriteLine(string.Join(Environment.NewLine, collected));
         }
 
         static IEnumerable<ProcessInfo> GetNewProcesses(TimeSpan interval)
