@@ -20,7 +20,7 @@ namespace BigBrother
             List<Process> collected = new List<Process>();
 
             DateTime startTime = DateTime.Now;
-            TimeSpan interval = TimeSpan.FromMinutes(0.2);
+            TimeSpan interval = TimeSpan.FromMinutes(1);
 
             while (DateTime.Now - startTime < interval)
             {
