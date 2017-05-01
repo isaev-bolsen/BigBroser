@@ -19,7 +19,8 @@ namespace BigBrother
             public ProcessInfo(Process process)
             {
                 Process = process;
-                ManagementObject ManagementObject = new ManagementObjectSearcher(query + process.Id).Get().OfType<ManagementObject>().Single();
+                ManagementObject ManagementObject = new ManagementObjectSearcher(query + process.Id).Get().OfType<ManagementObject>().SingleOrDefault();
+                if (ManagementObject == null) return;//Успел уйти, гад...
                 CommandLine = (ManagementObject["CommandLine"] ?? ManagementObject["ExecutablePath"])?.ToString();
             }
 
