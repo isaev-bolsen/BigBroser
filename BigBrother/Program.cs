@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
+using System.IO;
 
 namespace BigBrother
 {
@@ -39,7 +40,9 @@ namespace BigBrother
         static void Main(string[] args)
         {
             IEnumerable<ProcessInfo> collected = GetNewProcesses(TimeSpan.FromMinutes(1));
-            Console.WriteLine(string.Join(Environment.NewLine, collected));
+            string result = string.Join(Environment.NewLine, collected);
+            File.WriteAllText(DateTime.Now.ToFileTime() + ".log", result);
+            Console.WriteLine(result);
         }
 
         static IEnumerable<ProcessInfo> GetNewProcesses(TimeSpan interval)
