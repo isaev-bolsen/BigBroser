@@ -26,7 +26,7 @@ namespace BigBrother
 
             public override string ToString()
             {
-                return string.Join(" ", Process.ProcessName, CommandLine);
+                return string.Join(" ", Process.Id, Process.ProcessName, CommandLine, Process?.StartInfo?.FileName);
             }
         }
 
