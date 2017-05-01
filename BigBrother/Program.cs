@@ -51,7 +51,7 @@ namespace BigBrother
             while (DateTime.Now - startTime < interval)
             {
                 IEnumerable<Process> Current = Process.GetProcesses().Except(initial.Union(collected.Select(p => p.Process)), ProcessComparer.Instance);
-                collected.AddRange(Current.Select(p => new ProcessInfo(p));
+                collected.AddRange(Current.Select(p => new ProcessInfo(p)));
             }
             return collected;
         }
